@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    match /users/{userId}/experiments/{experimentId} {
+      allow read, delete: if signedIn() && request.auth.uid == userId;
+      allow create: if signedIn() && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly(['simulationId','title','savedAt','createdAt'])
+        && request.resource.data.title is string
+        && request.resource.data.title.size() <= 160;
+      allow update: if false;
+    }
+  }
+}

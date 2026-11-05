@@ -1,0 +1,22 @@
+import { simulations } from "./catalog.js";
+import { renderSimulation } from "./simulations.js";
+import * as FB from "./firebase.js";
+const $=id=>document.getElementById(id);
+let activeCategory="Semua",currentSimulation=null,currentUser=null,authMode="login";
+const icons={network:"🌐",os:"💻",ai:"🧠",discrete:"🚦",facility:"🏢"};
+const tones=["tone-0","tone-1","tone-2","tone-3","tone-4"];
+function renderCatalog(){const term=$("searchInput").value.toLowerCase();const list=simulations.filter(s=>(activeCategory==="Semua"||s.category===activeCategory)&&(`${s.title} ${s.description} ${s.category}`).toLowerCase().includes(term));$("labGrid").innerHTML=list.map((s,i)=>`<article class="lab-card"><div class="lab-visual ${tones[i%5]}"><span class="emoji">${icons[s.group]}</span><span class="code">${String(i+1).padStart(2,"0")}</span></div><div class="lab-meta">${s.category.toUpperCase()}</div><h3>${s.title}</h3><p>${s.description}</p><div class="lab-card-foot"><span class="level">INTERAKTIF • BROWSER</span><button class="open-lab" data-open="${s.id}">Buka lab ↗</button></div></article>`).join("");$("emptyState").hidden=list.length>0;document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openLab(b.dataset.open))}
+function openLab(id){const s=simulations.find(x=>x.id===id);if(!s)return;currentSimulation=s;$("modalCategory").textContent=s.category.toUpperCase();$("modalTitle").textContent=s.title;$("modalDesc").textContent=s.description;$("simModal").hidden=false;renderSimulation(id)}
+function closeModal(){$("simModal").hidden=true}
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600)}
+$("searchInput").addEventListener("input",renderCatalog);
+document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{activeCategory=b.dataset.filter;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderCatalog()});
+document.querySelectorAll(".category-card").forEach(b=>b.onclick=()=>{activeCategory=b.dataset.category;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.dataset.filter===activeCategory));$("laboratorium").scrollIntoView({behavior:"smooth"});renderCatalog()});
+$("closeModal").onclick=closeModal;$("simModal").onclick=e=>{if(e.target===$("simModal"))closeModal()};$("year").textContent=new Date().getFullYear();
+$("menuBtn").onclick=()=>$("mainNav").classList.toggle("open");
+$("saveExperiment").onclick=async()=>{const record={simulationId:currentSimulation?.id||"",title:currentSimulation?.title||"",savedAt:new Date().toISOString()};if(FB.configured&&currentUser){try{await FB.addDoc(FB.collection(FB.db,"users",currentUser.uid,"experiments"),{...record,createdAt:FB.serverTimestamp()});toast("Eksperimen tersimpan di akun Firebase.")}catch(e){toast("Gagal menyimpan: "+e.message)}}else{let a=JSON.parse(localStorage.getItem("abdumarExperiments")||"[]");a.push(record);localStorage.setItem("abdumarExperiments",JSON.stringify(a));toast("Eksperimen tersimpan di perangkat ini.")}};
+function showAuth(mode){authMode=mode;$("authTitle").textContent=mode==="login"?"Selamat datang":"Buat akun AbdUmar";$("authSubmit").textContent=mode==="login"?"Masuk":"Daftar akun";$("authSwitch").textContent=mode==="login"?"Belum punya akun? Daftar":"Sudah punya akun? Masuk";$("authMessage").textContent="";$("authModal").hidden=false}
+$("loginBtn").onclick=()=>showAuth("login");$("registerBtn").onclick=()=>showAuth("register");$("closeAuth").onclick=()=>$("authModal").hidden=true;$("authSwitch").onclick=()=>showAuth(authMode==="login"?"register":"login");
+$("authForm").onsubmit=async e=>{e.preventDefault();const email=$("authEmail").value,password=$("authPassword").value;if(!FB.configured){$("authMessage").textContent="Firebase belum dikonfigurasi. Isi js/firebase.js terlebih dahulu.";return}try{const result=authMode==="login"?await FB.signInWithEmailAndPassword(FB.auth,email,password):await FB.createUserWithEmailAndPassword(FB.auth,email,password);currentUser=result.user;$("authModal").hidden=true;toast("Berhasil masuk. Selamat belajar!")}catch(err){$("authMessage").textContent=err.message}};
+if(FB.configured)FB.onAuthStateChanged(FB.auth,user=>{currentUser=user;$("loginBtn").textContent=user?"Keluar":"Masuk";$("loginBtn").onclick=user?async()=>{await FB.signOut(FB.auth);toast("Anda telah keluar.")}:()=>showAuth("login")});
+renderCatalog();

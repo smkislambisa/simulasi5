@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7faff">
+  <meta name="description" content="AbdUmar Simulasi — laboratorium virtual interaktif untuk Informatika, jaringan, sistem operasi, AI, dan sistem diskret.">
+  <title>AbdUmar Simulasi — Virtual Computing Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">A<span>✦</span></span><span>AbdUmar <b>Simulasi</b><small>VIRTUAL COMPUTING LAB</small></span></a>
+  <nav class="nav" id="mainNav"><a href="#laboratorium">Laboratorium</a><a href="#kategori">Kategori</a><a href="#tentang">Tentang</a></nav>
+  <div class="top-actions"><button class="btn btn-ghost" id="loginBtn">Masuk</button><button class="btn btn-primary" id="registerBtn">Mulai Belajar <span>↗</span></button><button class="menu-btn" id="menuBtn">☰</button></div>
+</header>
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> VIRTUAL LABORATORY • INFORMATIKA</div>
+    <h1>Eksplorasi teknologi.<br><span>Uji ide tanpa batas.</span></h1>
+    <p class="hero-lead">Laboratorium simulasi interaktif untuk memahami cara kerja teknologi — dari jaringan komputer hingga kecerdasan buatan.</p>
+    <div class="hero-actions"><a class="btn btn-primary btn-lg" href="#laboratorium">Jelajahi Laboratorium <span>→</span></a><a class="btn btn-white btn-lg" href="#tentang">Kenali platform</a></div>
+    <div class="hero-proof"><div class="avatar-stack"><i>🌐</i><i>💻</i><i>🧠</i><i>⚙️</i></div><span><b>50 simulasi pembelajaran</b><small>Belajar aktif, visual, dan mandiri</small></span></div>
+  </div>
+  <div class="hero-art" aria-label="Ilustrasi laboratorium teknologi 3D">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <div class="float-card float-top"><span class="mini-icon blue">⌘</span><span><b>Network Lab</b><small>Connected</small></span><strong>●</strong></div>
+    <div class="core-cube"><div class="cube-face face-front">AI</div><div class="cube-face face-side">01</div><div class="cube-face face-top">✦</div></div>
+    <div class="float-card float-bottom"><span class="mini-icon purple">◈</span><span><b>Simulation Engine</b><small>Ready to explore</small></span><strong class="live-dot">LIVE</strong></div>
+    <div class="spark spark-a">✦</div><div class="spark spark-b">✧</div><div class="spark spark-c">＋</div>
+  </div>
+  <div class="hero-blob"></div>
+</section>
+<section class="stats-strip"><div><b>50<span>+</span></b><small>Topik simulasi</small></div><div><b>5</b><small>Bidang pembelajaran</small></div><div><b>100%</b><small>Berbasis browser</small></div><div><b>∞</b><small>Ruang bereksperimen</small></div></section>
+<section class="section" id="kategori">
+  <div class="section-head"><div><div class="eyebrow">JELAJAHI BIDANG</div><h2>Satu platform,<br><span>banyak kemungkinan.</span></h2></div><p>Pilih bidang yang ingin kamu pelajari. Setiap laboratorium dirancang untuk membantu konsep abstrak menjadi lebih mudah dipahami.</p></div>
+  <div class="category-grid">
+    <button class="category-card cat-network" data-category="Jaringan & Keamanan"><span class="cat-emoji">🌐</span><span><b>Jaringan & Keamanan</b><small>Routing, subnetting, firewall, IDS</small></span><i>↗</i></button>
+    <button class="category-card cat-os" data-category="Sistem Operasi"><span class="cat-emoji">💻</span><span><b>Sistem Operasi</b><small>CPU, memori, proses, disk</small></span><i>↗</i></button>
+    <button class="category-card cat-ai" data-category="AI & Data Science"><span class="cat-emoji">🧠</span><span><b>AI & Data Science</b><small>Machine learning, robot, neural net</small></span><i>↗</i></button>
+    <button class="category-card cat-discrete" data-category="Logistik & Sistem Diskret"><span class="cat-emoji">🚦</span><span><b>Logistik & Sistem Diskret</b><small>Antrean, transportasi, optimasi</small></span><i>↗</i></button>
+    <button class="category-card cat-facility" data-category="Bisnis & Fasilitas Publik"><span class="cat-emoji">🏢</span><span><b>Bisnis & Fasilitas Publik</b><small>Evakuasi, layanan, manajemen</small></span><i>↗</i></button>
+  </div>
+</section>
+<section class="section lab-section" id="laboratorium">
+  <div class="section-head"><div><div class="eyebrow">KOLEKSI SIMULASI</div><h2>Laboratorium <span>pilihan.</span></h2></div><p>Belajar dengan mencoba. Ubah parameter, jalankan simulasi, lalu amati hasilnya secara langsung.</p></div>
+  <div class="toolbar"><div class="searchbox"><span>⌕</span><input id="searchInput" placeholder="Cari simulasi, algoritma, atau topik..." aria-label="Cari simulasi"></div><div class="filter-row" id="filters"><button class="filter active" data-filter="Semua">Semua</button><button class="filter" data-filter="Jaringan & Keamanan">Jaringan</button><button class="filter" data-filter="Sistem Operasi">Sistem Operasi</button><button class="filter" data-filter="AI & Data Science">AI & Data</button><button class="filter" data-filter="Logistik & Sistem Diskret">Sistem Diskret</button><button class="filter" data-filter="Bisnis & Fasilitas Publik">Fasilitas</button></div></div>
+  <div class="lab-grid" id="labGrid"></div><div class="empty-state" id="emptyState" hidden>Tidak ada simulasi yang cocok. Coba kata kunci lain.</div>
+</section>
+<section class="feature-band" id="tentang"><div class="feature-art"><div class="glass-panel"><div class="panel-head"><span>SIMULATION OVERVIEW</span><span class="status">● SYSTEM READY</span></div><div class="bars"><i style="height:38%"></i><i style="height:58%"></i><i style="height:45%"></i><i style="height:80%"></i><i style="height:66%"></i><i style="height:96%"></i><i style="height:72%"></i><i style="height:88%"></i></div><div class="panel-foot"><span>Live experiment</span><b>+24.8%</b></div></div><div class="feature-orb">✳</div></div><div class="feature-copy"><div class="eyebrow">BELAJAR DENGAN PENGALAMAN</div><h2>Konsep rumit jadi <span>lebih nyata.</span></h2><p>AbdUmar Simulasi menghadirkan pengalaman praktikum digital yang aman, fleksibel, dan mudah diakses. Eksperimen dapat diulang kapan saja tanpa harus menyiapkan perangkat fisik.</p><ul><li><span>✓</span> Visualisasi proses dan algoritma secara bertahap</li><li><span>✓</span> Parameter dapat diubah sesuai kebutuhan belajar</li><li><span>✓</span> Riwayat eksperimen tersimpan saat masuk akun</li></ul><a class="btn btn-primary" href="#laboratorium">Mulai eksplorasi →</a></div></section>
+<section class="cta"><div><div class="eyebrow">LEARN • EXPERIMENT • INNOVATE</div><h2>Ide besar dimulai dari<br>eksperimen kecil.</h2><p>Pilih satu laboratorium dan mulai bereksperimen hari ini.</p></div><a class="btn btn-white btn-lg" href="#laboratorium">Temukan simulasi <span>↗</span></a><div class="cta-shape">✳</div></section>
+</main>
+<footer><a class="brand" href="#"><span class="brand-mark">A<span>✦</span></span><span>AbdUmar <b>Simulasi</b><small>VIRTUAL COMPUTING LAB</small></span></a><p>Laboratorium virtual untuk pembelajaran Informatika.</p><small>© <span id="year"></span> AbdUmar Simulasi. Dibangun untuk belajar dan bereksperimen.</small></footer>
+
+<div class="modal-backdrop" id="simModal" hidden><div class="modal"><div class="modal-header"><div><span class="eyebrow" id="modalCategory">LABORATORIUM</span><h3 id="modalTitle">Simulasi</h3></div><button class="close-btn" id="closeModal" aria-label="Tutup">×</button></div><p id="modalDesc" class="modal-desc"></p><div id="simulationMount"></div><div class="modal-footer"><span class="safe-note">● Simulasi edukatif lokal di browser</span><button class="btn btn-white" id="saveExperiment">Simpan eksperimen</button></div></div></div>
+<div class="modal-backdrop" id="authModal" hidden><div class="auth-card"><button class="close-btn auth-close" id="closeAuth">×</button><div class="brand-mark auth-mark">A<span>✦</span></div><h3 id="authTitle">Selamat datang</h3><p>Masuk untuk menyimpan progres dan eksperimen.</p><form id="authForm"><label>Alamat email</label><input type="email" id="authEmail" required placeholder="nama@email.com"><label>Password</label><input type="password" id="authPassword" required minlength="6" placeholder="Minimal 6 karakter"><button class="btn btn-primary full" type="submit" id="authSubmit">Masuk</button></form><button class="auth-switch" id="authSwitch">Belum punya akun? Daftar</button><div id="authMessage" class="auth-message"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+</body></html>
